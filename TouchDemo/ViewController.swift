@@ -21,7 +21,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let height = view.bounds.size.height
         switch view.traitCollection.userInterfaceIdiom {
         case .phone:
-            return UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) ? width : height / 1.4
+            return UIApplication.shared.statusBarOrientation.isPortrait ? width : height / 1.4
         default:
             return height / 1.9
         }
@@ -68,7 +68,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             let dot = DotView()
             view.addSubview(dot)
             
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.handleLongPress(_:)))
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
             longPress.cancelsTouchesInView = false
             longPress.delegate = self
             dot.addGestureRecognizer(longPress)
@@ -116,7 +116,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Gestures
-    
+    @objc
     func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
         if let dot = gesture.view {
             switch gesture.state {

@@ -18,18 +18,18 @@ extension UIColor {
         var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 1.0
         
         if (hex.hasPrefix("#")) {
-            hex = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1))
+            hex = hex.substring(from: hex.index(hex.startIndex, offsetBy: 1))
         }
         
         let scanner = Scanner(string: hex)
         var hexValue: UInt32 = 0
         if scanner.scanHexInt32(&hexValue) {
-            if hex.characters.count == 8 {
+            if hex.count == 8 {
                 red   = CGFloat((hexValue & 0xFF000000) >> 24) / 255.0
                 green = CGFloat((hexValue & 0x00FF0000) >> 16) / 255.0
                 blue  = CGFloat((hexValue & 0x0000FF00) >> 8) / 255.0
                 alpha = CGFloat((hexValue & 0x000000FF)) / 255.0
-            } else if hex.characters.count == 6 {
+            } else if hex.count == 6 {
                 red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
                 green = CGFloat((hexValue & 0x00FF00) >> 8) / 255.0
                 blue  = CGFloat((hexValue & 0x0000FF)) / 255.0

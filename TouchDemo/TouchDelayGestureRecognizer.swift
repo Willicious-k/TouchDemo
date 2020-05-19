@@ -30,7 +30,7 @@ class TouchDelayGestureRecognizer: UIGestureRecognizer {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         timer = Timer.scheduledTimer(timeInterval: 0.15,
-                                     target: self, selector: #selector(TouchDelayGestureRecognizer.fail),
+                                     target: self, selector: #selector(fail),
                                      userInfo: nil, repeats: false)
     }
     
@@ -42,6 +42,7 @@ class TouchDelayGestureRecognizer: UIGestureRecognizer {
         fail()
     }
     
+    @objc
     func fail() {
         state = .failed
     }
